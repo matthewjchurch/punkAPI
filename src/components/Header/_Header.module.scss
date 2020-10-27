@@ -1,0 +1,11 @@
+section.filters {
+    background-color: grey;
+    display: block;
+
+    > * {
+        padding: 10px;
+        > * {
+            margin: 5px;
+        }
+    }
+}
