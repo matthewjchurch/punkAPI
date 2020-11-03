@@ -1,4 +1,29 @@
 header {
-    background-color: #00a5d4;
+    background-color: #1D1B1B;
+    color: #FAFAFA;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Bitter', serif;
+    
+    h1 {
+        font-size: 40px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: #FAFAFA;
+    }
+    span {
+        font-size: 30px;
+        margin-left: 20px;
+        &:hover {
+            cursor: pointer;
+            color: #FAFAFA;
+        }
+    }
 }

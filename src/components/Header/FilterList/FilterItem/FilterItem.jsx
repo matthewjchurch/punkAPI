@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from "../../../../assets/styles/_FilterItem.module.scss";
 
 const FilterItem = (props) => {
     const {queryStr, setQueryStr, setBeers, item, query, range} = props;
@@ -16,11 +17,11 @@ const FilterItem = (props) => {
     }
 
     return (
-        <>
+        <div className={styles.slideContainer}>
             <label htmlFor={item}>{`Min ${item}`}</label>
-            <input onChange={slideHandler} type={"range"} min="0" max={range} value={value} />
-            <input id={`${item}Slide}`} type="text"/>
-        </>
+            <input className={styles.slide} onChange={slideHandler} type={"range"} min="0" max={range} value={value} />
+            <input className={styles.output} id={`${item}Slide}`} type="text"/>
+        </div>
     )
 }
 

@@ -16,15 +16,19 @@ const FilterList = (props) => {
     }
 
     const getFilters = item => {
-        return <FilterItem queryStr={queryStr}
-                        setQueryStr={setQueryStr}
-                        setBeers={setBeers} 
-                        item={item} 
-                        query={filters[item].query}
-                        range={filters[item].range} />
+        return (
+            <FilterItem 
+                key={item}
+                queryStr={queryStr}
+                setQueryStr={setQueryStr}
+                setBeers={setBeers} 
+                item={item} 
+                query={filters[item].query}
+                range={filters[item].range} 
+            />
+        )
     }
 
-    
     return (
         <div>
             {Object.keys(filters).map(getFilters)}

@@ -1,11 +1,18 @@
 section.filters {
-    background-color: grey;
+    background-color: rgb(77, 103, 135);
     display: block;
+    
+    label {
+        font-family: 'Cantarell',
+        sans-serif;
+    }
 
-    > * {
-        padding: 10px;
-        > * {
-            margin: 5px;
-        }
+    .filters {
+        display: flex;
+        justify-content: space-around;
+    }
+    & > div > input:nth-child(2) {
+        background-color: #E3F2FD;
+        border: none;
     }
 }

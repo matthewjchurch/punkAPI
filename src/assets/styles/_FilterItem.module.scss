@@ -1,0 +1,11 @@
+div.slideContainer {
+    width: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    input.output {
+        background-color: #E3F2FD;
+        border: none;
+        margin: 10px
+    }
+}

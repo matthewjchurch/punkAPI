@@ -2,11 +2,37 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import BeerList from "./components/BeerList";
 import Header from "./components/Header";
+import firebase, { firestore, githubProvider, googleProvider } from "./firebase";
+import library from "./data/fa-library";
+import Routes from './Routes/Routes';
 
 function App() {
 
   const [beers, setBeers] = useState([]);
   const [queryStr, setQueryStr] = useState("?");
+  const [user, setUser] = useState(null);
+
+  const getUser = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }
+
+  const signInGoogle = () => {
+    firebase.auth().signInWithRedirect(googleProvider);
+  }
+
+  const signInGithub = () => {
+    firebase.auth().signInWithRedirect(githubProvider);
+  }
+
+  const signOut = () => {
+    firebase.auth().signOut();
+  }
 
   const getInitialData = () => {
     fetch(`https://api.punkapi.com/v2/beers`)
@@ -25,16 +51,25 @@ function App() {
     }
 
     useEffect(() => {
-        getInitialData()
+        getInitialData();
+        getUser();
     }, []);
+    console.log(user);
 
   return (
     <>
-      <Header queryStr={queryStr}
-              setQueryStr={setQueryStr} 
-              setBeers={queryData}
-              />
-      <BeerList beers={beers} />
+      <Header 
+        queryStr={queryStr}
+        setQueryStr={setQueryStr} 
+        setBeers={queryData}
+        beers={beers}
+        signInGoogle={signInGoogle}
+        signInGithub={signInGithub}
+        signOut={signOut}
+        user={user} />
+      <Routes 
+        beers={beers} 
+        user={user} />
     </>
   );
 }
