@@ -7,11 +7,13 @@ const FilterList = (props) => {
         "ABV": {
             query: "abv_gt",
             range: 12,
+            step: 1,
         },
 
         "IBU": {
             query: "ibu_gt",
             range: 100,
+            step: 5,
         }
     }
 
@@ -24,7 +26,8 @@ const FilterList = (props) => {
                 setBeers={setBeers} 
                 item={item} 
                 query={filters[item].query}
-                range={filters[item].range} 
+                range={filters[item].range}
+                step={filters[item].step}
             />
         )
     }

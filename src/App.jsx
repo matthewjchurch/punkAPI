@@ -58,8 +58,11 @@ function App() {
     useEffect(() => {
         getInitialData();
         getUser();
-        console.log(firebase.auth().currentUser);
     }, []);
+
+    useEffect(() => {
+        queryData()
+    }, [queryStr]);
 
   return (
     <>

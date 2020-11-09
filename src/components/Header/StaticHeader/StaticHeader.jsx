@@ -25,6 +25,7 @@ const StaticHeader = (props) => {
                     icon={["fab", "github"]} />
             </span>
         </>
+        
     return (
         <header>
             <Link to="/">

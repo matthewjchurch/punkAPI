@@ -25,8 +25,10 @@ const MyBeers = (props) => {
     });
 
     useEffect(() => {
-        getBeers();
-    }, [])
+        return user ?
+        getBeers():
+        null;
+    }, [user])
     
     return (
         user ? 
