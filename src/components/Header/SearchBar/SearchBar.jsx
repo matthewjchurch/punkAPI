@@ -24,7 +24,7 @@ const SearchBar = (props) => {
             <label htmlFor="name">Know what you're looking for?</label>
             <input 
                 onChange={searchHandler} 
-                onKeydown={backspaceHandler} 
+                onKeyDown={backspaceHandler} 
                 type="text"
             />
         </div>

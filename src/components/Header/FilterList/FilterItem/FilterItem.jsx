@@ -11,7 +11,6 @@ const FilterItem = (props) => {
     }
 
     useEffect(() => {
-        console.log(value);
         let re = new RegExp(`${query}=\\w+&`);
         document.getElementById(`${item}Slide}`).value = value;
         queryStr.match(query) ?
