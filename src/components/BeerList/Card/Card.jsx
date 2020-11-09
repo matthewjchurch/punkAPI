@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from "../../../assets/styles/_BeerList.module.scss";
 import firebase, { firestore } from "../../../firebase";
 
@@ -15,27 +15,29 @@ const Card = (props) => {
                 .collection("users")
                 .doc(user.uid)
                 .update({favourites: firebase.firestore.FieldValue.arrayUnion({...beer, user: user.uid})})
-                .then(res => console.log(res));
         } else {
             alert("Please log in to add favourites");
         }
     }
 
     const isFavourite = () => {
-        let fav = false;
-        if(user){
+        if (user) {
             firestore
                 .collection("users")
                 .doc(user.uid)
                 .get()
-                .then((doc) => doc.data().favourites.forEach(favourite => {
-                    if (beer.id === favourite.id) {
-                        fav = true;
+                .then(doc => doc.data().favourites.forEach(favourite => {
+                    if (favourite.id === beer.id) {
+                        setFav(true)
                     }
                 }))
         }
         return fav
     }
+
+    useEffect(() => {
+        isFavourite();
+    }, [user])
 
     return (
         <article>
@@ -47,7 +49,7 @@ const Card = (props) => {
                 <p>{beer.ibu}</p>
                 <FontAwesomeIcon 
                     onClick={setFavouriteBeer} 
-                    icon={isFavourite() ? ["fas", "heart"] : ["far", "heart"]}
+                    icon={fav ? ["fas", "heart"] : ["far", "heart"]}
                     className={styles.faHeart} />
             </section>
         </article>

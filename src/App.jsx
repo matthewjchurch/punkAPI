@@ -12,18 +12,23 @@ function App() {
   const [queryStr, setQueryStr] = useState("?");
   const [user, setUser] = useState(null);
 
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
   const getUser = () => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
+      if (user){
         setUser(user);
-      } else {
-        setUser(null);
       }
-    });
+    })
   }
 
   const signInGoogle = () => {
-    firebase.auth().signInWithRedirect(googleProvider);
+    firebase
+      .auth()
+      .signInWithPopup(googleProvider)
+      .then(result => {
+        setUser(result.user)
+      })
   }
 
   const signInGithub = () => {
@@ -53,8 +58,8 @@ function App() {
     useEffect(() => {
         getInitialData();
         getUser();
+        console.log(firebase.auth().currentUser);
     }, []);
-    console.log(user);
 
   return (
     <>

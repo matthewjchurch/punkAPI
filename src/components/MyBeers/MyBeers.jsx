@@ -32,7 +32,9 @@ const MyBeers = (props) => {
         user ? 
         <>
             <h1>{`Welcome to your beer list, ${user.displayName.split(" ")[0]}`}</h1> 
-            {favourites.map(mapBeers)}
+            <section className={styles.cardsGrid}>
+                {favourites.map(mapBeers)}
+            </section>
         </>:
         null
     )
